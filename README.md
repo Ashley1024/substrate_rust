@@ -1,6 +1,8 @@
 # substrate_rust
 
 ### sort.rs
+```
+
 #[test]
 fn sort_main() {
     let arr:[i32;4] = [7,8,30,21];
