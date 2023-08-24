@@ -1,7 +1,7 @@
 # substrate_rust
 
 ### sort.rs
-格式为：![图片2](https://img-blog.csdnimg.cn/img_convert/ba4c8875c3a1846cfbb287c6f42fd8b7.png)
+运行结果：![运行结果]([https://img-blog.csdnimg.cn/img_convert/ba4c8875c3a1846cfbb287c6f42fd8b7.png](https://github.com/Ashley1024/substrate_rust/blob/main/running_result.png))
 
 ```
 
