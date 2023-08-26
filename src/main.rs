@@ -2,6 +2,9 @@ use std::collections::HashMap;
 use rand::Rng;
 use rand::rngs::ThreadRng;
 mod sort;
+mod enum_learn;
+mod sum_arr;
+mod calculat_area;
 
 //task: hong
 fn main() {
