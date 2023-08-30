@@ -1,3 +1,12 @@
+# substrate_rust
+
+### sort.rs
+
+![运行结果](https://github.com/Ashley1024/substrate_rust/blob/main/running_result.png)
+
+
+```
+
 #[test]
 fn sort_main() {
     let arr:[i32;4] = [7,8,30,21];
@@ -14,6 +23,7 @@ fn sort_main() {
     let mut list = vec![1, 50, 200, 34, 2, 100,44];
     template_sort(&mut list);
 }
+
 
 fn bubble_sort(mut arr:[i32;4])->Result<bool,String>{
     println!("input of fixed type array sort: {:?}",arr);   

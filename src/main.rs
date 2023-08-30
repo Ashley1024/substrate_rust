@@ -1,14 +1,16 @@
 use std::collections::HashMap;
 use rand::Rng;
 use rand::rngs::ThreadRng;
+
+use crate::calculate_obj::shape::{Area, self};
+// use crate::calculate_obj::shape::Rectangle;
 mod sort;
 mod enum_learn;
 mod sum_arr;
 mod calculat_area;
+mod calculate_obj;
 
-//task: hong
 fn main() {
-
     let arr:[i32;4] = [7,8,30,21];
     let f = bubble_sort(arr);   
     match f {
