@@ -1,7 +1,76 @@
 # substrate_rust
 
-![运行结果](https://github.com/Ashley1024/substrate_rust/blob/main/calculate_area.png)
+## Q1
+![运行结果](https://github.com/Ashley1024/substrate_rust/blob/main/traffic_light.png)
+### enum_learn.rs
+```
+#[test]
+fn trait_main(){
+    let red_light: TrafficLight = TrafficLight::Red;
+    let yellow_light: TrafficLight = TrafficLight::Yellow;
+    let green_light: TrafficLight = TrafficLight::Green;
 
+    println!("red light is {}",red_light.time());
+    println!("yellow light is {}",yellow_light.time());
+    println!("green light is {}",green_light.time());
+}
+
+enum TrafficLight {
+    Red,
+    Green,
+    Yellow,
+}
+
+impl TrafficLight {
+    fn time(&self) -> u8{
+        match self {
+            TrafficLight::Red => 60,
+            TrafficLight::Green => 30,
+            TrafficLight::Yellow => 5,
+        }
+    }  
+}
+```
+## Q2 
+![运行结果](https://github.com/Ashley1024/substrate_rust/blob/main/sum_array.png)
+### sum_arr.rs
+
+```
+// 2. 实现一个函数，为u32类型的整数集合求和，参数类型为 &[u32]，返回类型为Option，溢出时返回None
+// 请放github链接或直接填写在该问卷文本框里
+
+#[test]
+fn sum_main(){
+    let mut list: Vec<u32> = vec![1,2,3,4,5];
+    // list[0];
+    // println!("list[0]: {}",list[0]);
+    sum_array::<u32>(&mut list);
+}
+
+fn sum_array<T: PartialOrd + Copy + std::fmt::Debug>(list: &mut Vec<u32>) -> Option<u32> {
+    let mut sum_num = 0;
+
+    let n = list.len();
+    if n > 0 {
+        for i in 0 ..n-1{
+            sum_num = sum_num + list[i];
+        }
+
+        let opt = Some(sum_num);
+
+        match opt {
+            Some(ref x) => println!("sum result:{}", x),
+            None => println!("None"),
+        }
+        return Some(sum_num);
+    } else {
+        return None;
+    }
+}
+
+```
+## Q3
+![运行结果](https://github.com/Ashley1024/substrate_rust/blob/main/calculate_area.png)
 ### calculate_area.rs
 ```
 // 3. 实现一个打印图形面积的函数，它接收一个可以计算面积的类型作为参数，比如圆形，三角形，正方形，需要用到泛型和泛型约束
