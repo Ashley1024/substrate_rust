@@ -1,60 +1,110 @@
 # substrate_rust
 
-### sort.rs
+![运行结果](https://github.com/Ashley1024/substrate_rust/blob/main/calculate_area.png)
 
-![运行结果](https://github.com/Ashley1024/substrate_rust/blob/main/running_result.png)
+### calculate_area.rs
+```
+// 3. 实现一个打印图形面积的函数，它接收一个可以计算面积的类型作为参数，比如圆形，三角形，正方形，需要用到泛型和泛型约束
+// use crate::calculate_obj::shape::Area;
+mod shape;
+#[test]
+fn calculat_main(){
+
+    let radius =6.0;
+    let width =10.0;
+    let height =9.0;
+    let mut cal_circle = crate::calculat_area::shape::shape::Circle::new();
+    cal_circle.set_radius(radius);
+    let cal_circle = crate::calculat_area::shape::shape::Area::area_format(&cal_circle); 
+
+    println!("If radius is {}, circle area: {}", radius,cal_circle);
+ 
+    let mut cal_rectangle = crate::calculat_area::shape::shape::Rectangle::new();
+    cal_rectangle.set_w_h(10.0, 10.0);
+    println!("If height is {} and width is {}, rectangle area: {}",height,width, crate::calculat_area::shape::shape::Area::area_format(&cal_rectangle));
+
+    // let mut cal_triangle
+    let mut cal_triangle: shape::shape::Triangle = crate::calculat_area::shape::shape::Triangle::new();
+    cal_triangle.set_w_h(10.0, 10.0);
+    println!("If height is {} and width is {}, triangle area: {}",height,width, crate::calculat_area::shape::shape::Area::area_format(&cal_triangle));
 
 
+}
 ```
 
-#[test]
-fn sort_main() {
-    let arr:[i32;4] = [7,8,30,21];
-    let f = bubble_sort(arr);   
-    match f {
-        Ok(f)=> {
-            println!("bubble sort done. {:?}",f);
-         },
-        Err(e)=> {
-            println!("illeagal input: \n{:?}",e);   // 处理错误
-         }
+### calculate_area/shape.rs
+```
+pub mod shape {
+    pub trait Area {
+        fn area_format(&self) -> f32;
     }
-
-    let mut list = vec![1, 50, 200, 34, 2, 100,44];
-    template_sort(&mut list);
-}
-
-
-fn bubble_sort(mut arr:[i32;4])->Result<bool,String>{
-    println!("input of fixed type array sort: {:?}",arr);   
-
-        let n = arr.len();
-        if n > 1 {
-            for index in 0..n-1{
-                if arr[index] > arr[index+1] {
-                    // let tmp = arr[index];
-                    // arr[index] = arr[index+1];
-                    // arr[index+1] = tmp; 
-                    arr.swap(index,index+1);
-                }
+    #[derive(Debug)]
+    pub struct Rectangle {
+        width: f32,
+        height: f32,
+    }
+    impl Rectangle {
+        pub fn set_w_h(self: &mut Rectangle, w: f32, h: f32) {
+            self.width = w;
+            self.height = h;
+        }
+ 
+        pub fn new() -> Rectangle {
+            Rectangle {
+                width: 0.0,
+                height: 0.0,
             }
-            println!("fixed type sort result: {:?}",arr);   
-            return Ok(true);
-        } else {
-            return Err("please make sure the lengh of array more than 1".to_string());
         }
     }
-    
-fn template_sort<T: PartialOrd + Copy + std::fmt::Debug>(list: &mut Vec<T>) -> &Vec<T> {
-    println!("input of arbitrary type array sort: {:?}",list);   
-
-    for i in 0..list.len()-1 {
-        if list[i] > list[i+1] {
-            list.swap(i,i+1);
+    impl Area for Rectangle {
+        fn area_format(&self) -> f32 {
+            self.height * self.width
         }
     }
-    println!("arbitrary type sort result: {:?}",list);   
 
-    list
+    #[derive(Debug)]
+    pub struct Circle {
+        radius: f32,
+    }
+ 
+    impl Circle {
+        pub fn set_radius(self: &mut Circle, val: f32) {
+            self.radius = val;
+        }
+ 
+        pub fn new() -> Circle {
+            Circle { radius: 0.0 }
+        }
+    }
+ 
+    impl Area for Circle {
+        fn area_format(&self) -> f32 {
+            self.radius * self.radius * 3.14
+        }
+    }
+
+    pub struct Triangle{
+        width: f32,
+        height: f32,
+    }
+    impl Triangle {
+        pub fn set_w_h(self: &mut Triangle, w: f32, h: f32) {
+            self.width = w;
+            self.height = h;
+        }
+ 
+        pub fn new() -> Triangle {
+            Triangle {
+                width: 0.0,
+                height: 0.0,
+            }
+        }
+    }
+    impl Area for Triangle {
+        fn area_format(&self) -> f32 {
+            self.height * self.width * 0.5
+        }
+    }
 }
-    
+
+```
