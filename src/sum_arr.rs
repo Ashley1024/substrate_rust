@@ -9,19 +9,19 @@ fn sum_main(){
     sum_array::<u32>(&mut list);
 }
 
-fn sum_array<T: PartialOrd + Copy + std::fmt::Debug>(list: &mut Vec<u32>) -> Option<u32> {
+fn sum_array<T: PartialOrd + Copy + std::fmt::Debug + std::fmt::Display>(list: &mut Vec<u32>) -> Option<u32> {
     let mut sum_num = 0;
 
     let n = list.len();
     if n > 0 {
-        for i in 0 ..n-1{
-            sum_num = sum_num + list[i];
+        for i in 0 ..n{
+            sum_num += list[i];
         }
 
         let opt = Some(sum_num);
 
         match opt {
-            Some(ref x) => println!("sum result:{}", x),
+            Some(ref x) => println!("input array {:?}, sum result:{}",list, x),
             None => println!("None"),
         }
         return Some(sum_num);
